@@ -2,13 +2,12 @@
 
 class Database {
 
-    private static $host = '<host>';
-    private static $db = '<database_name>'; 
-    private static $user = '<user>';
-    private static $pw = '<password>';
+    // Path to the SQLite database file
+    private static $dbPath = 'database.sqlite';
 
     private static function connect() {
-        $pdo = new PDO('mysql:host=' . self::$host . ';dbname=' . self::$db .';charset=utf8', self::$user, self::$pw);
+        // Connect to the SQLite database
+        $pdo = new PDO('sqlite:' . self::$dbPath);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         return $pdo;
